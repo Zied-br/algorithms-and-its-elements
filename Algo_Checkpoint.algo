@@ -1,0 +1,30 @@
+ALGORITHM Sentence
+VAR
+   L_sentence:INTEGER:=0;
+   N_words:INTEGER:=0;
+   N_vowels:INTEGER:=0;
+   i:INTEGER:=0;  
+   voyels: ARRAY_OF CHAR[6]:=["a", "e", "i", "o", "u", "y"]; 
+BEGIN
+    Read(str);
+    //adding the last word if there is no space before the dot
+    IF (str[str.length-2]<>" ") THEN
+    N_words++;
+    END_IF
+    WHILE (str[i]<>".") DO 
+        IF(str[i]<>" ") THEN 
+        L_sentence++;
+            IF(voyels.includes(str[i].toLowerCase())) THEN 
+            N_vowels++;
+            END_IF
+        ELSE 
+            IF((str[i-1]<>" ")and(i<>0))THEN
+            N_words++;
+            END_IF
+        END_IF
+        i++;
+    END_WHILE 
+    write(L_sentence);
+    write(N_words);
+    write(N_vowels);
+END
